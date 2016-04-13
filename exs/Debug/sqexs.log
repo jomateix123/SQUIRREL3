@@ -1,0 +1,7 @@
+﻿  minimal.c
+minimal.c(99): warning C4133: 'function': incompatible types - from 'const char *' to 'const SQChar *'
+minimal.c(100): warning C4020: 'sq_newclosure': too many actual parameters
+minimal.c(132): warning C4013: 'wcslen' undefined; assuming extern returning int
+minimal.c(154): warning C4133: 'function': incompatible types - from 'unsigned short [8]' to 'const char *'
+c:\users\xevi\documents\squirrel3\exs\minimal.c(103): warning C4716: 'register_global_func': must return a value
+  sqexs.vcxproj -> C:\Users\Xevi\Documents\SQUIRREL3\exs\Debug\sqexs.exe
