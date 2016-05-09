@@ -6,6 +6,7 @@
 #include <sqstdaux.h> 
 #include <sqstdstring.h>
 
+
 #ifdef _MSC_VER
 #pragma comment (lib ,"libsquirrel.lib")
 #pragma comment (lib ,"libsqstdlib.lib")
@@ -109,9 +110,53 @@ SQChar* prgm = _SC(" function hulla() { \
 	print(\"hello guys\\n\"); \
 }");
 
+SQChar* prgm2 = _SC(" function Mutiplicacio(int a, int b) { \
+                        int b = a * b; \
+	                    print(\"Ei nois!\"); }");
+       
+
+
+void prova()
+{
+	HSQUIRRELVM v;
+
+	v = sq_open(1024);
+
+	sq_pushinteger(v, 10);
+	sq_pushinteger(v, 20);
+	sq_pushinteger(v, 30);
+
+
+	sq_push(v, -3);
+
+	sq_pop(v, 1);
+	sq_remove(v, -2);
+
+//	sq_settop(v, 10);
+
+	SQInteger i = sq_gettop(v);
+	printf("*** Abans d'introduir res: %d\n", i);
+	SQInteger r;
+	sq_getinteger(v, -1, &r);
+
+	printf("*** Resultat: %d\n", r);
+
+
+	//sq_push(v, -1);
+	//sq_pushstring(v, "hola", -2);
+	i = sq_gettop(v);
+	printf("*** Tamany d'ara: %d\n", i);
+
+	sq_close(v);
+}
+
+// Main function
 
 int main(int argc, char* argv[])
 {
+
+	prova();
+
 	HSQUIRRELVM v;
 	v = sq_open(1024); // creates a VM with initial stack size 1024 
 
@@ -148,9 +193,14 @@ int main(int argc, char* argv[])
 
 	}
 
+/*	if (SQ_SUCCEEDED(sq_compilebuffer(v, prgm2, scstrlen(prgm2), _SC("Aviam"), SQTrue)))
+	{
+		if(SQ_SUCCEEDED(sq_call(v, 1, retval, SQTrue))
+	}
+*/
 	sq_settop(v, oldtop);
 
-
+/*
 	register_global_func(v, print_prova, _SC("myprint"));
 
 	call_print_prova(v);
@@ -164,6 +214,8 @@ int main(int argc, char* argv[])
 	}
 
 	sq_pop(v, 1); //pops the root table
+*/
+
 	sq_close(v);
 
 	return 0;
